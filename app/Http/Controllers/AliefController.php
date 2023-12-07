@@ -14,11 +14,17 @@ class AliefController extends Controller
     public function kontak(){
         return view ('kontak');
     }
+    public function menu(){
+        return view ('menu');
+    }
     public function index(){
         return view ('posts.index');
     }
     public function login(){
         return view ('login');
+    }
+    public function register(){
+        return view ('register');
     }
 
     public function formsubmit(PostRequest $request){

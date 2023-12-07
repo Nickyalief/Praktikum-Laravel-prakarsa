@@ -23,9 +23,11 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [AliefController::class,'home'])->name('home');
 Route::get('/tentang', [AliefController::class,'tentang'])->name('tentang');
+Route::get('/menu', [AliefController::class,'menu'])->name('menu');
 Route::get('/kontak', [AliefController::class,'kontak'])->name('kontak');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/login', [PostController::class, 'login'])->name('login');
+Route::get('/register', [PostController::class, 'register'])->name('register');
 
 //Form Validation
 Route::post('/kontak', [AliefController::class,'formsubmit'])->name('submit');

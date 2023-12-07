@@ -1,111 +1,43 @@
 @extends('halamanutama')
-
 @section('container')
-<style>
-    .invalid-feedback{
-        text-align: center;
-        align-content: center;
-        border-radius: 0.6em;
-        background-color: #ffffff;
-}
 
-.output{
-font-family: Arial, Helvetica, sans-serif;
-}
-.nama{
-margin-right: 25px;
-margin-left: 45px;
-}
-.no{
-margin-right: 45px;
-}
-.pesan{
-margin-right: 45px;
-}
-.email{
-margin-right: 45px;
-}
-</style>
-<a class="navbar-brand" href="#"><img src="/img/PRAKARSAicon.png" alt="" class="navbar-brand" width="40"><span
-    class="text-warning">SCOUT</span>PRAKARSA</a>
-<!-- Contact Section -->
-<section class="py-5" id="contact">
-    <div class="container-xxl py-5">
-        <div class="col-12 mt-5 d-flex flex-column text-center justify-content-center">
-            <h2 class="text-black bold">CONTACT IN HERE</h2>
+<div class="heading">
+    <h3>contact us</h3>
+    <p><a href="{{route('home')}}">home </a> <span> / contact</span></p>
+ </div>
 
-        </div>
-        <div class="row pt-4 ">
-            <div class="col-12">
-                <form action="/kontak" class="form" method="POST">
-                    @csrf
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="name" class="form-control app-form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="Enter Name*"
-                                    value="{{old('name')}}">
-                                    @error('name')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                <label for="floatingInput">Enter Name</label>
-                            </div>
+ <section class="contact">
 
-                            <div class="form-floating mb-3">
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingEmail"
-                                    placeholder="Enter Email*" value="{{old('email')}}">
-                                    @error('email')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                <label for="floatingEmail">Enter Email</label>
-                            </div>
+    <div class="row">
 
-                            <div class="form-floating mb-3">
-                                <input type="number" name="kontak" class="form-control @error('kontak') is-invalid @enderror" id="floatingPassword"
-                                    placeholder="Enter Phone*" >
-                                    @error('kontak')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                <label for="floatingPassword">Enter Phone</label>
-                            </div>
-                        </div>
+       <div class="image">
+          <img src="images/contact-img.svg" alt="">
+       </div>
 
-                        <div class="form-floating col-lg-6">
-                            <textarea name="message" class="form-control  @error('message') is-invalid @enderror" placeholder="Leave a comment here" id="floatingMessage"
-                                style="height: 206px;resize: none" ></textarea>
-                                @error('message')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                            <label for="floatingMessage" class="px-4">Enter Message</label>
-                        </div>
+       <form action="/kontak" class="form" method="post">
+        @csrf
+          <h3>tell us something!</h3>
+          <input type="text" name="name"  placeholder="enter your name" maxlength="50" class="box  @error('name') is-invalid @enderror" value="{{old('name')}}">
+          @error('name')
+                <div style="color:red; font-size:15px ">{{$message}}</div>
+            @enderror
+          <input type="number" name="number"  placeholder="enter your number" max="9999999999" min="0" class="box @error('kontak') is-invalid @enderror" onkeypress="if(this.value.length == 10) return false;" value="{{old('kontak')}}">
+          @error('kontak')
+                <div style="color:red; font-size:15px ">{{$message}}</div>
+            @enderror
+          <input type="email" name="email"  placeholder="enter your email" maxlength="50" class="box @error('email') is-invalid @enderror" value="{{old('email')}}">
+          @error('email')
+                <div style="color:red; font-size:15px ">{{$message}}</div>
+            @enderror
+          <textarea name="msg" placeholder="enter your message"  class="box @error('message') is-invalid @enderror" cols="30" rows="10" maxlength="500"  value="{{old('message')}}"></textarea>
+          @error('message')
+                <div style="color:red; font-size:15px ">{{$message}}</div>
+            @enderror
+          <input type="submit" value="send message" class="btn" name="send">
+       </form>
 
-                        <div class=" mt-4 d-flex justify-content-center">
-                            <button class="btn buttonsmk btn-lg btn-outline-light">SEND MESSAGE</button>
-
-                        </div>
-                        <div class="container">
-                            @if ( session("alif") )
-                            <div class="alert alert-secondary mt-3">
-                                <h3 class="shout text-center">Show Message</h3>
-                                <table style="width:100%">
-                                    <tr>
-                                      <th>Name</th>
-                                      <th>Email</th>
-                                      <th>Number</th>
-                                      <th>Message<th>
-                                    </tr>
-                                    <tr>
-                                      <td>{{ session("alif.name")}} </td>
-                                      <td>{{ session('alif.email')}}  </td>
-                                      <td>{{ session('alif.kontak')}} </td>
-                                      <td>{{ session('alif.message')}} </td>
-                                    </tr>
-                                  </table>
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
-</section>
+
+ </section>
+
+@endsection
